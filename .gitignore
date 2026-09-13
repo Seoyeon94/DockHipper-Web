@@ -1,0 +1,37 @@
+# macOS
+.DS_Store
+
+# Local editor and workspace state
+.vscode/
+.idea/
+*.swp
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.cer
+*.certSigningRequest
+*.mobileprovision
+*.provisionprofile
+ExportOptions.plist
+
+# Swift / Xcode files must stay out of the public website repo
+*.swift
+*.xcodeproj/
+*.xcworkspace/
+*.xcuserdata/
+*.xcuserstate
+*.xcarchive/
+*.dSYM/
+.build/
+.swiftpm/
+Build/
+DerivedData/
+
+# Optional local download artifact.
+# Keep the placeholder but avoid accidentally committing signed release files.
+downloads/*.zip
+!downloads/.gitkeep
