@@ -1,6 +1,6 @@
 const DOWNLOAD_URL = "https://github.com/Seoyeon94/DockHipper-Web/releases/download/v1.0.0/DockHipper-v1.0.0.zip";
 const APP_VERSION = "1.0.0";
-const FILE_SIZE = "62.8 MB";
+const FILE_SIZE = "64.7 MB";
 const MIN_MACOS_VERSION = "macOS 13.0+";
 const FEEDBACK_URL = "";
 const FAQ_URL = "";
