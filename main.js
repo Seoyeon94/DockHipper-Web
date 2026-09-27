@@ -16,6 +16,7 @@
     },
     ticking: false,
     descriptionTimer: null,
+    visibleImageIndex: 0,
   };
 
   const elements = {
@@ -26,6 +27,7 @@
     stepNavigation: $("#stepNavigation"),
     screenshotFrame: $("#screenshotFrame"),
     featureImage: $("#featureImage"),
+    featureImageNext: $("#featureImageNext"),
     highlightBox: $("#highlightBox"),
     descriptionCard: $("#descriptionCard"),
     descriptionNumber: $("#descriptionNumber"),
@@ -80,9 +82,10 @@
       return;
     }
 
+    const isDesktop = window.matchMedia("(min-width: 1100px) and (min-height: 720px)").matches;
     const steps = currentSteps().length;
-    const isDesktop = window.matchMedia("(min-width: 860px)").matches;
-    const height = 940 + (steps - 1) * 360;
+    const pinHeight = elements.featurePanel.offsetHeight;
+    const height = pinHeight + steps * 520;
     elements.featureScroll.style.setProperty("--feature-scroll-height", isDesktop ? `${height}px` : "auto");
   };
 
@@ -115,27 +118,37 @@
 
   const updateFeatureImage = (step, shouldAnimate) => {
     const nextSource = new URL(step.image, window.location.href).href;
-    const currentSource = elements.featureImage.currentSrc || elements.featureImage.src;
+    const layers = [elements.featureImage, elements.featureImageNext];
+    const visibleLayer = layers[state.visibleImageIndex];
+    const hiddenIndex = state.visibleImageIndex === 0 ? 1 : 0;
+    const hiddenLayer = layers[hiddenIndex];
+    const currentSource = visibleLayer.currentSrc || visibleLayer.src;
 
-    elements.featureImage.alt = step.imageAlt;
     elements.screenshotFrame.dataset.kind = step.imageKind;
 
     if (currentSource === nextSource) {
+      visibleLayer.alt = step.imageAlt;
       return;
     }
 
     if (!shouldAnimate) {
-      elements.featureImage.src = step.image;
+      visibleLayer.src = step.image;
+      visibleLayer.alt = step.imageAlt;
+      visibleLayer.classList.add("is-visible");
+      hiddenLayer.classList.remove("is-visible");
       return;
     }
 
-    elements.screenshotFrame.classList.add("is-image-switching");
-    window.setTimeout(() => {
-      elements.featureImage.src = step.image;
-      window.setTimeout(() => {
-        elements.screenshotFrame.classList.remove("is-image-switching");
-      }, 80);
-    }, 130);
+    hiddenLayer.src = step.image;
+    hiddenLayer.alt = step.imageAlt;
+    hiddenLayer.removeAttribute("aria-hidden");
+    visibleLayer.setAttribute("aria-hidden", "true");
+
+    window.requestAnimationFrame(() => {
+      hiddenLayer.classList.add("is-visible");
+      visibleLayer.classList.remove("is-visible");
+      state.visibleImageIndex = hiddenIndex;
+    });
   };
 
   const setDescription = (step, animated) => {
@@ -211,13 +224,15 @@
   const featureScrollRange = () => {
     const rect = elements.featureScroll.getBoundingClientRect();
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const start = rect.top + scrollTop;
-    const end = start + elements.featureScroll.offsetHeight - window.innerHeight;
+    const stickyTop = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--sticky-top")) || 0;
+    const pinHeight = elements.featurePanel.offsetHeight;
+    const start = rect.top + scrollTop - stickyTop;
+    const end = start + elements.featureScroll.offsetHeight - pinHeight;
     return { start, end };
   };
 
   const updateStepFromScroll = () => {
-    if (!window.matchMedia("(min-width: 860px)").matches) {
+    if (!window.matchMedia("(min-width: 1100px) and (min-height: 720px)").matches) {
       return;
     }
 
@@ -280,6 +295,11 @@
     setLinkTargets();
     preloadFeatureImages();
     renderTab(state.activeTab, { instant: true });
+    const useVideo = $(".use-video");
+    if (useVideo) {
+      useVideo.muted = true;
+      useVideo.play().catch(() => {});
+    }
     elements.tabButtons.forEach((button) => {
       button.addEventListener("click", () => switchTab(button.dataset.tab));
     });

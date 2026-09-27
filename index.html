@@ -14,24 +14,23 @@
       content="맥꾸, 이제 Dock까지. Dock 위에 히퍼를 올려보세요."
     />
     <meta property="og:type" content="website" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles-v2.css?v=20260927d" />
   </head>
   <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="DockHipper home">DockHipper</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#install">How to Install</a>
+        <a href="#feature">Feature</a>
+        <a class="download-pill nav-download" data-download-link href="https://github.com/Seoyeon94/DockHipper-Web/releases/download/v1.0.0/DockHipper-v1.0.0.zip" download>
+          <span aria-hidden="true"></span>
+          <span>Download for macOS</span>
+        </a>
+      </nav>
+    </header>
     <main id="top">
       <section class="hero-section" aria-labelledby="heroTitle">
         <div class="hero-inner">
-          <header class="site-header">
-            <a class="brand" href="#top" aria-label="DockHipper home">DockHipper</a>
-            <nav class="nav-links" aria-label="Main navigation">
-              <a href="#install">How to Install</a>
-              <a href="#feature">Feature</a>
-              <a class="download-pill nav-download" data-download-link href="https://github.com/Seoyeon94/DockHipper-Web/releases/download/v1.0.0/DockHipper-v1.0.0.zip" download>
-                <span aria-hidden="true"></span>
-                <span>Download for macOS</span>
-              </a>
-            </nav>
-          </header>
-
           <div class="hero-content">
             <div class="hero-copy">
               <h1 id="heroTitle">맥꾸, 이제 Dock까지</h1>
@@ -49,11 +48,14 @@
       </section>
 
       <section class="install-section" id="install" aria-labelledby="installTitle">
-        <div class="install-panel">
-          <div class="install-heading">
+        <div class="section-heading has-mascot">
+          <img class="section-mascot pompom-heading" src="./assets/images/decor/pompom.png" alt="" aria-hidden="true" />
+          <div>
             <h2 id="installTitle">How to Install</h2>
-            <p>지금 바로, DockHipper를 설치해보세요.</p>
+            <p>애플 공증 받은 앱이라 경고 없이 사용해 보세요</p>
           </div>
+        </div>
+        <div class="install-panel">
           <ol class="install-steps" aria-label="DockHipper installation steps">
             <li>
               <span class="step-badge">1</span>
@@ -65,7 +67,7 @@
               <span class="step-badge">2</span>
               <span class="step-icon file" aria-hidden="true">▣</span>
               <h3>Unzip</h3>
-              <p>압축을 풀어주세요.</p>
+              <p>압축을 풀어요.</p>
             </li>
             <li>
               <span class="step-badge">3</span>
@@ -80,12 +82,49 @@
               <p>손쉬운 사용 권한을 허용해 주세요.</p>
             </li>
           </ol>
+          <div class="accessibility-guide">
+            <img src="./assets/images/install/accessibility.png" alt="시스템 설정의 손쉬운 사용 목록에서 Hipper를 허용한 화면" />
+            <div class="accessibility-copy">
+              <h3>‘설정 &gt; 개인정보 보호 및 보안 &gt; 손쉬운 사용 &gt; Hipper’</h3>
+              <p>Dock의 상태를 정확히 알기 위해 제어 허용이 필요해요!</p>
+              <small>사용 중 Dock을 잘 인식하지 못한다면<br />손쉬운 사용에서 ‘Hipper’를 ‘비활성화’ 후 다시 허용해 주세요.</small>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="feature-tabs-section" id="feature" aria-label="DockHipper feature tabs">
-        <div class="tab-shell">
-          <img class="pompom-decor" src="./assets/images/decor/pompom.png" alt="" aria-hidden="true" />
+      <section class="use-section" id="use" aria-labelledby="useTitle">
+        <div class="section-heading has-mascot">
+          <img class="section-mascot muffin-heading" src="./assets/images/decor/muffin.png" alt="" aria-hidden="true" />
+          <div>
+            <h2 id="useTitle">How to Use</h2>
+            <p>마우스로 커스터마이징 하여 사용해 보세요</p>
+          </div>
+        </div>
+        <div class="use-panel">
+          <div class="use-copy">
+            <h3>메뉴바에서 Settings를 클릭해<br />커스터마이징 해보세요!</h3>
+            <p>히퍼가 방해가 될 때 빠르게 꺼보세요</p>
+          </div>
+          <video class="use-video" autoplay muted loop playsinline preload="auto" aria-label="메뉴바에서 DockHipper 설정을 여는 방법">
+            <source src="./assets/video/how-to-use.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </section>
+
+      <section class="feature-tabs-section" id="feature" aria-labelledby="featuresTitle">
+        <div class="section-heading has-mascot feature-overview-heading">
+          <img class="section-mascot scone-heading" src="./assets/images/decor/scone.png" alt="" aria-hidden="true" />
+          <div>
+            <h2 id="featuresTitle">Features Overview</h2>
+            <p>두 가지 기능을 상세히 소개 드릴게요</p>
+          </div>
+        </div>
+
+        <div id="featureScroll" class="feature-scroll">
+          <div class="feature-pin">
+            <div id="featurePanel" class="feature-panel">
+              <div class="tab-shell">
           <div class="segmented-control" role="tablist" aria-label="Feature type">
             <button id="figureTab" class="segment is-active" type="button" role="tab" aria-selected="true" data-tab="figure">
               Figure
@@ -94,11 +133,7 @@
               Timer
             </button>
           </div>
-        </div>
-
-        <div id="featureScroll" class="feature-scroll">
-          <div class="feature-pin">
-            <div id="featurePanel" class="feature-panel">
+              </div>
               <div class="feature-heading">
                 <h2 id="featureTitle">Hipper Figure</h2>
                 <p id="featureSubtitle">좋아하는 캐릭터를 배열해서 나만의 Dock을 꾸며보세요</p>
@@ -109,7 +144,8 @@
 
                 <div class="screenshot-area" aria-live="polite">
                   <div id="screenshotFrame" class="screenshot-frame">
-                    <img id="featureImage" src="./assets/images/ui/figure-popup.png" alt="DockHipper Figure settings popup screenshot" />
+                    <img id="featureImage" class="feature-image-layer is-visible" src="./assets/images/ui/figure-popup.png" alt="DockHipper Figure settings popup screenshot" />
+                    <img id="featureImageNext" class="feature-image-layer" src="./assets/images/ui/figure-popup.png" alt="" aria-hidden="true" />
                     <span id="highlightBox" class="highlight-box" aria-hidden="true"></span>
                   </div>
                 </div>
@@ -125,37 +161,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="info-section" aria-label="Trust and feedback">
-        <div class="info-grid">
-          <article class="info-card notarized-card">
-            <div class="info-icon apple-symbol" aria-hidden="true"></div>
-            <div>
-              <h2>Apple Notarized</h2>
-              <p>
-                DockHipper는 Apple의 공증을 받은 앱입니다.<br />
-                추가 경고 없이 안전하게 실행할 수 있어요.
-              </p>
-            </div>
-          </article>
-
-          <article class="info-card feedback-card">
-            <div class="info-icon mail-symbol" aria-hidden="true">✉</div>
-            <div>
-              <h2>Found a bug or have an idea?</h2>
-              <p>
-                사용 중 불편한 점이나 새로운 아이디어가 있다면<br />
-                언제든 알려주세요. 더 좋은 DockHipper를 만들어갈게요!
-              </p>
-              <a class="feedback-button" data-feedback-link href="#">
-                <span>의견 보내기</span>
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
-            <img class="feedback-mascot" src="./assets/images/decor/pompom.png" alt="" aria-hidden="true" />
-          </article>
         </div>
       </section>
     </main>
@@ -182,6 +187,6 @@
     </footer>
 
     <script src="./config.js"></script>
-    <script src="./main.js" defer></script>
+    <script src="./main.js?v=20260927b" defer></script>
   </body>
 </html>
