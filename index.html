@@ -15,6 +15,28 @@
     />
     <meta property="og:type" content="website" />
     <link rel="stylesheet" href="./styles-v2.css?v=20260927d" />
+    <script>
+      (() => {
+        const measurementId = "G-0GW2R94GGE";
+
+        if (window.location.hostname !== "seoyeon94.github.io") {
+          return;
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () {
+          window.dataLayer.push(arguments);
+        };
+
+        const googleTag = document.createElement("script");
+        googleTag.async = true;
+        googleTag.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+        document.head.appendChild(googleTag);
+
+        window.gtag("js", new Date());
+        window.gtag("config", measurementId);
+      })();
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -22,7 +44,7 @@
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#install">How to Install</a>
         <a href="#feature">Feature</a>
-        <a class="download-pill nav-download" data-download-link href="https://github.com/Seoyeon94/DockHipper-Web/releases/download/v1.0.0/DockHipper-v1.0.0.zip" download>
+        <a class="download-pill nav-download" data-download-link data-download-location="navigation" href="https://github.com/Seoyeon94/DockHipper-Web/releases/download/v1.0.0/DockHipper-v1.0.0.zip" download>
           <span aria-hidden="true"></span>
           <span>Download for macOS</span>
         </a>
@@ -35,7 +57,7 @@
             <div class="hero-copy">
               <h1 id="heroTitle">맥꾸, 이제 Dock까지</h1>
               <p>Dock 위에 히퍼를 올려보세요</p>
-              <a class="download-pill hero-download" data-download-link href="https://github.com/Seoyeon94/DockHipper-Web/releases/download/v1.0.0/DockHipper-v1.0.0.zip" download>
+              <a class="download-pill hero-download" data-download-link data-download-location="hero" href="https://github.com/Seoyeon94/DockHipper-Web/releases/download/v1.0.0/DockHipper-v1.0.0.zip" download>
                 <span aria-hidden="true"></span>
                 <span>Download for macOS</span>
               </a>
@@ -187,6 +209,6 @@
     </footer>
 
     <script src="./config.js"></script>
-    <script src="./main.js?v=20260927b" defer></script>
+    <script src="./main.js?v=20260928" defer></script>
   </body>
 </html>

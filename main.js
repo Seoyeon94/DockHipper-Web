@@ -64,6 +64,22 @@
     });
   };
 
+  const trackDownloadClicks = () => {
+    elements.downloadLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (typeof window.gtag !== "function") {
+          return;
+        }
+
+        window.gtag("event", "download_hipper", {
+          download_location: link.dataset.downloadLocation || "unknown",
+          file_name: "DockHipper-v1.0.0.zip",
+          platform: "macOS",
+        });
+      });
+    });
+  };
+
   const preloadFeatureImages = () => {
     const sources = new Set();
 
@@ -293,6 +309,7 @@
     }
 
     setLinkTargets();
+    trackDownloadClicks();
     preloadFeatureImages();
     renderTab(state.activeTab, { instant: true });
     const useVideo = $(".use-video");
